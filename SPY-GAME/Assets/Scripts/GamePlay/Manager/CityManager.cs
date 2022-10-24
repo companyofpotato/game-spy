@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
+/*
+- city
+0 : 플레이어의 본부. 지도에 표시되지는 않는다.
+7 : 적의 본부. 지도에 표시되지는 않는다.
+*/
 
 public class CityManager : MonoBehaviour
 {
     private static CityManager currentInstance;
 
-    public static City[] cityList {get; private set;}
+    public static List<City> cityList {get; private set;}
+
+    static List<int> emptyPersonList = new List<int>(new int[] {-1});
 
     // 싱글톤 접근용 프로퍼티
     public static CityManager instance
@@ -37,17 +46,16 @@ public class CityManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cityList = new City[8];
-        for(int i = 0;i < 8;i++)
-        {
-            cityList[i] = new City();
-        }
+        cityList = new List<City>();
+        cityList.Add(new City(0, "base", -1, -1, -1, emptyPersonList));
+        cityList.Add(new City(1, "alpha", 0, 0, 0, emptyPersonList));
+        cityList.Add(new City(2, "bravo", 0, 0, 0, emptyPersonList));
+        cityList.Add(new City(3, "charlie", 0, 0, 0, emptyPersonList));
+        cityList.Add(new City(4, "delta", 0, 0, 0, emptyPersonList));
+        cityList.Add(new City(5, "echo", 0, 0, 0, emptyPersonList));
+        cityList.Add(new City(6, "foxtrot", 0, 0, 0, emptyPersonList));
+        cityList.Add(new City(7, "golf", 0, 0, 0, emptyPersonList));
 
-        int[] tmp = {0, 1, 2, 3, 4, 5, 6, 7};
-
-        cityList[0].SetNewCity(0, "base", -1, -1, -1, null, tmp);
-        cityList[1].SetNewCity(1, "alpha", 0, 0, 0, null, null);
-        
     }
 
     // Update is called once per frame
@@ -61,8 +69,59 @@ public class CityManager : MonoBehaviour
         return cityList[cityNumber];
     }
 
-    public void ChangeValue(int cityNumber, City changedCity)
+    public static void ResetPersonListOfCity()
+    {
+        for(int i = 0;i < 8;i++)
+        {
+            var tmpQuery =
+            from person in PersonManager.personList
+            where person.location == i
+            select person.id;
+
+            List<int> tmpList = tmpQuery.ToList();
+            ChangeCityPersonList(i, tmpList);
+
+/*
+            foreach(var item in tmpList)
+            {
+                Debug.Log(PersonManager.personList[item].codename + PersonManager.personList[item].status);
+            }
+*/
+        }
+    }
+
+    public static void ChangeCityInfo(int cityNumber, City changedCity)
     {
 
+    }
+
+    public static void ChangeCityId(int cityNumber, int id)
+    {
+        cityList[cityNumber].ChangeId(id);
+    }
+
+    public static void ChangeCityName(int cityNumber, string name)
+    {
+        cityList[cityNumber].ChangeName(name);
+    }
+
+    public static void ChangeCityType(int cityNumber, int type)
+    {
+        cityList[cityNumber].ChangeType(type);
+    }
+
+    public static void ChangeCityBuildings(int cityNumber, int buildings)
+    {
+        cityList[cityNumber].ChangeBuildings(buildings);
+    }
+
+    public static void ChangeCityTraits(int cityNumber, int traits)
+    {
+        cityList[cityNumber].ChangeTraits(traits);
+    }
+
+    public static void ChangeCityPersonList(int cityNumber, List<int> personList)
+    {
+        cityList[cityNumber].ChangePersonList(personList);
     }
 }

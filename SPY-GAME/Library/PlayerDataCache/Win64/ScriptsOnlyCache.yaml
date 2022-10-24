@@ -1,17 +1,24 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Assassination
     - CityManager
+    - Deploy
     - EquipmentManager
     - EventManager
     - GameManager
     - GamePlayUIManager
+    - InvestigatePerson
+    - InvestigateRegion
     - MainMenuManager
     - PersonManager
+    - Persuasion
+    - Record
+    - ResourceManager
     - SaveFileManager
-    - SoundManager
-    - StrategicActionManager
     - TacticalActionManager
+    - Test
+    - Withdrawal
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
@@ -52,6 +59,7 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
@@ -108,138 +116,199 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle/ToggleEvent
   methodsToPreserve:
   - assembly: Assembly-CSharp
-    fullTypeName: MainMenuManager
-    methodName: HideLoadGameView
+    fullTypeName: GamePlayUIManager
+    methodName: HideTacticalView
   - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SaveData
+    fullTypeName: GamePlayUIManager
+    methodName: HideTacticalView
   - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SelectSlot
+    fullTypeName: GamePlayUIManager
+    methodName: HideTacticalView
   - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SelectSlot
+    fullTypeName: Withdrawal
+    methodName: Execute
   - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SelectSlot
+    fullTypeName: GamePlayUIManager
+    methodName: HideUnselectedTargetView
   - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SelectSlot
+    fullTypeName: GamePlayUIManager
+    methodName: ShowStrategicView
   - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SelectSlot
+    fullTypeName: GamePlayUIManager
+    methodName: HideUnselectedCityView
   - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SelectSlot
-  - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SelectSlot
-  - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SelectSlot
-  - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SelectSlot
-  - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SelectSlot
-  - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: SelectSlot
-  - assembly: Assembly-CSharp
-    fullTypeName: MainMenuManager
-    methodName: HideNewGameView
-  - assembly: Assembly-CSharp
-    fullTypeName: SaveFileManager
-    methodName: MakeNewFile
-  - assembly: Assembly-CSharp
-    fullTypeName: MainMenuManager
-    methodName: StartGame
+    fullTypeName: TacticalActionManager
+    methodName: SelectCity
   - assembly: Assembly-CSharp
     fullTypeName: MainMenuManager
     methodName: ShowLoadGameView
   - assembly: Assembly-CSharp
-    fullTypeName: MainMenuManager
-    methodName: ShowNewGameView
+    fullTypeName: EventManager
+    methodName: HideReportView
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: HideUnselectedMethodView
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: SelectCity
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: HideTacticalView
+  - assembly: Assembly-CSharp
+    fullTypeName: Assassination
+    methodName: HidePersonScrolls
+  - assembly: Assembly-CSharp
+    fullTypeName: Assassination
+    methodName: ShowEquipScrolls
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: HideStrategicView
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: ShowTacticalView
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: SelectCity
+  - assembly: Assembly-CSharp
+    fullTypeName: Deploy
+    methodName: Execute
+  - assembly: Assembly-CSharp
+    fullTypeName: Record
+    methodName: TT
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: ShowTacticalView
+  - assembly: Assembly-CSharp
+    fullTypeName: Assassination
+    methodName: HideEquipScrolls
+  - assembly: Assembly-CSharp
+    fullTypeName: Assassination
+    methodName: ShowPersonScrolls
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: ShowTacticalView
+  - assembly: Assembly-CSharp
+    fullTypeName: Assassination
+    methodName: HideEquipScrolls
+  - assembly: Assembly-CSharp
+    fullTypeName: Assassination
+    methodName: ShowPersonScrolls
+  - assembly: Assembly-CSharp
+    fullTypeName: InvestigateRegion
+    methodName: Execute
+  - assembly: Assembly-CSharp
+    fullTypeName: EventManager
+    methodName: EndTurn
+  - assembly: Assembly-CSharp
+    fullTypeName: EventManager
+    methodName: MakeReport
+  - assembly: Assembly-CSharp
+    fullTypeName: EventManager
+    methodName: ShowReportView
+  - assembly: Assembly-CSharp
+    fullTypeName: ResourceManager
+    methodName: ResetResourceUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: ResetSelectedCity
+  - assembly: Assembly-CSharp
+    fullTypeName: CityManager
+    methodName: ResetPersonListOfCity
+  - assembly: Assembly-CSharp
+    fullTypeName: Persuasion
+    methodName: PlusMoney
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: RefreshSelectedCity
+  - assembly: Assembly-CSharp
+    fullTypeName: Persuasion
+    methodName: HideConfirmationView
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: HideTacticalView
+  - assembly: Assembly-CSharp
+    fullTypeName: ResourceManager
+    methodName: ResetResourceUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: RefreshSelectedCity
+  - assembly: Assembly-CSharp
+    fullTypeName: Assassination
+    methodName: HideConfirmationView
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: HideTacticalView
+  - assembly: Assembly-CSharp
+    fullTypeName: ResourceManager
+    methodName: ResetResourceUI
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: HideUnselectedAgentView
+  - assembly: Assembly-CSharp
+    fullTypeName: Persuasion
+    methodName: MinusMoney
   - assembly: Assembly-CSharp
     fullTypeName: MainMenuManager
     methodName: ShowOptionView
   - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: ShowTacticalView
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenuManager
+    methodName: ShowSaveGameView
+  - assembly: Assembly-CSharp
     fullTypeName: MainMenuManager
     methodName: ExitGame
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: HideLowMoneyView
+  - assembly: Assembly-CSharp
+    fullTypeName: Assassination
+    methodName: Execute
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: RefreshSelectedCity
+  - assembly: Assembly-CSharp
+    fullTypeName: Withdrawal
+    methodName: HideConfirmationView
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: HideTacticalView
+  - assembly: Assembly-CSharp
+    fullTypeName: ResourceManager
+    methodName: ResetResourceUI
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenuManager
+    methodName: LoadMainMenuScene
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: SelectCity
+  - assembly: Assembly-CSharp
+    fullTypeName: Persuasion
+    methodName: UpdateOddScreenText
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: RefreshSelectedCity
+  - assembly: Assembly-CSharp
+    fullTypeName: Deploy
+    methodName: HideConfirmationView
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: HideTacticalView
+  - assembly: Assembly-CSharp
+    fullTypeName: ResourceManager
+    methodName: ResetResourceUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: SelectCity
+  - assembly: Assembly-CSharp
+    fullTypeName: Persuasion
+    methodName: Execute
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: SelectCity
   sceneClasses:
     Assets/Scenes/GamePlayScene.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1566}
-    - Class: 114
-      Script: {instanceID: 1630}
-    - Class: 114
-      Script: {instanceID: 1996}
-    - Class: 114
-      Script: {instanceID: 2752}
-    - Class: 114
-      Script: {instanceID: 2864}
-    - Class: 114
-      Script: {instanceID: 3126}
-    - Class: 114
-      Script: {instanceID: 3486}
-    - Class: 114
-      Script: {instanceID: 4408}
-    - Class: 114
-      Script: {instanceID: 4732}
-    - Class: 114
-      Script: {instanceID: 4828}
-    - Class: 114
-      Script: {instanceID: 6042}
-    - Class: 114
-      Script: {instanceID: 6782}
-    - Class: 114
-      Script: {instanceID: 6786}
-    - Class: 114
-      Script: {instanceID: 6986}
-    - Class: 114
-      Script: {instanceID: 6992}
-    - Class: 114
-      Script: {instanceID: 7054}
-    - Class: 114
-      Script: {instanceID: 7412}
-    - Class: 114
-      Script: {instanceID: 7872}
-    - Class: 114
-      Script: {instanceID: 8228}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/MainMenuScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -265,47 +334,81 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1570}
     - Class: 114
-      Script: {instanceID: 1766}
+      Script: {instanceID: 1630}
     - Class: 114
-      Script: {instanceID: 1996}
+      Script: {instanceID: 1768}
     - Class: 114
-      Script: {instanceID: 2350}
+      Script: {instanceID: 1998}
     - Class: 114
-      Script: {instanceID: 2864}
+      Script: {instanceID: 2338}
     - Class: 114
-      Script: {instanceID: 2882}
+      Script: {instanceID: 2354}
     - Class: 114
-      Script: {instanceID: 3126}
+      Script: {instanceID: 2756}
     - Class: 114
-      Script: {instanceID: 3486}
+      Script: {instanceID: 2866}
     - Class: 114
-      Script: {instanceID: 4474}
+      Script: {instanceID: 2884}
     - Class: 114
-      Script: {instanceID: 4642}
+      Script: {instanceID: 2950}
     - Class: 114
-      Script: {instanceID: 4758}
+      Script: {instanceID: 3130}
     - Class: 114
-      Script: {instanceID: 4780}
+      Script: {instanceID: 3490}
     - Class: 114
-      Script: {instanceID: 5116}
+      Script: {instanceID: 3712}
+    - Class: 114
+      Script: {instanceID: 3794}
+    - Class: 114
+      Script: {instanceID: 4202}
+    - Class: 114
+      Script: {instanceID: 4482}
+    - Class: 114
+      Script: {instanceID: 4650}
+    - Class: 114
+      Script: {instanceID: 4764}
+    - Class: 114
+      Script: {instanceID: 4786}
+    - Class: 114
+      Script: {instanceID: 4834}
+    - Class: 114
+      Script: {instanceID: 4912}
+    - Class: 114
+      Script: {instanceID: 4926}
+    - Class: 114
+      Script: {instanceID: 5126}
     - Class: 114
       Script: {instanceID: 5794}
     - Class: 114
-      Script: {instanceID: 5944}
+      Script: {instanceID: 5810}
     - Class: 114
-      Script: {instanceID: 6042}
+      Script: {instanceID: 5962}
     - Class: 114
-      Script: {instanceID: 6786}
+      Script: {instanceID: 6060}
     - Class: 114
-      Script: {instanceID: 6992}
+      Script: {instanceID: 6802}
     - Class: 114
-      Script: {instanceID: 7054}
+      Script: {instanceID: 6806}
     - Class: 114
-      Script: {instanceID: 7412}
+      Script: {instanceID: 7006}
     - Class: 114
-      Script: {instanceID: 7424}
+      Script: {instanceID: 7012}
     - Class: 114
-      Script: {instanceID: 7960}
+      Script: {instanceID: 7076}
+    - Class: 114
+      Script: {instanceID: 7434}
+    - Class: 114
+      Script: {instanceID: 7446}
+    - Class: 114
+      Script: {instanceID: 7504}
+    - Class: 114
+      Script: {instanceID: 7752}
+    - Class: 114
+      Script: {instanceID: 7982}
+    - Class: 114
+      Script: {instanceID: 8250}
+    - Class: 114
+      Script: {instanceID: 9368}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -362,6 +465,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Analysis
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnScrollbarValueChangedMessageListener
@@ -415,7 +524,7 @@ ScriptsOnlyBuild:
     className: SimpleScript
   - hash:
       serializedVersion: 2
-      Hash: dc8450e28a19eb659da949d7a09c0e1b
+      Hash: 9e0471563c3322e73838a459f0dfcc51
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainMenuManager
@@ -425,6 +534,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnTriggerEnterMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 47230b89d259add628b204352fa13ab6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TacticalActionManager
   - hash:
       serializedVersion: 2
       Hash: 800c50acba124432abb4cf0d47202e06
@@ -533,6 +648,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: d9ea208f4499190e3690416b8b4f0a4c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ResourceManager
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -679,10 +800,22 @@ ScriptsOnlyBuild:
     className: VariablesAsset
   - hash:
       serializedVersion: 2
+      Hash: d86ae859605e9f2239ee3b681817df93
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Assassination
+  - hash:
+      serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
     assemblyName: Unity.VisualScripting.Flow.dll
     namespaceName: Unity.VisualScripting
     className: ScriptMachine
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StrategicActionManager
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -737,6 +870,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnCollisionExit2DMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InvestigateRegion
   - hash:
       serializedVersion: 2
       Hash: cd1c93a552a813159175d818a844dc09
@@ -835,12 +974,6 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: TacticalActionManager
-  - hash:
-      serializedVersion: 2
       Hash: ef5c43f921427d03730f6ea4c848f07d
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -865,7 +998,7 @@ ScriptsOnlyBuild:
     className: CameraController
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: c5061e732840fd1e2e6c49a3a32b728e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EventManager
@@ -875,6 +1008,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: DictionaryAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 32655d4f7b1f8fd21fcf7ed75493e41b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Persuasion
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Test
   - hash:
       serializedVersion: 2
       Hash: 6980e81ddc615a861309d2d659cc3760
@@ -899,6 +1044,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: TMPro_InstructionOverlay
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Trade
   - hash:
       serializedVersion: 2
       Hash: ab6a2fed0a3d86e42cbaa680bbf9bfac
@@ -980,6 +1131,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EquipmentManagement
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnBeginDragMessageListener
@@ -989,6 +1146,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AnimationPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InvestigatePerson
   - hash:
       serializedVersion: 2
       Hash: 77aaaaa51f7a8d8ff333a879741e47d2
@@ -1147,6 +1310,12 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Research
+  - hash:
+      serializedVersion: 2
       Hash: 9a61c1bdf95111bb7cb8d043b2e44230
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1189,6 +1358,12 @@ ScriptsOnlyBuild:
     className: MarkerTrack
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Record
+  - hash:
+      serializedVersion: 2
       Hash: 8e6ceabfd38a184413d69b7db56c89cc
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
@@ -1213,6 +1388,12 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
+      Hash: 521c465b4a3a87d9712ca065417fd1aa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Withdrawal
+  - hash:
+      serializedVersion: 2
       Hash: bd3f0ca738703903e759f77536ed74fd
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -1235,12 +1416,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Outline
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: StrategicActionManager
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1297,7 +1472,7 @@ ScriptsOnlyBuild:
     className: PositionAsUV1
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: f2df080be5a93707a6359e7006213bfa
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GamePlayUIManager
@@ -1471,6 +1646,12 @@ ScriptsOnlyBuild:
     className: TeleType
   - hash:
       serializedVersion: 2
+      Hash: 521c465b4a3a87d9712ca065417fd1aa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Deploy
+  - hash:
+      serializedVersion: 2
       Hash: e63944317d2f5958e31963668bb29158
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -1519,6 +1700,5 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   platform: 19
   scenePathNames:
-  - Assets/Scenes/MainMenuScene.unity
   - Assets/Scenes/GamePlayScene.unity
-  playerPath: C:/Users/User/Desktop/Spy-game/SPY-GAME.exe
+  playerPath: C:/Users/User/Desktop/spygame2/SPY-GAME.exe

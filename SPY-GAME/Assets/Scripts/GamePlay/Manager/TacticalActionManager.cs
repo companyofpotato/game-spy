@@ -11,16 +11,31 @@ public class TacticalActionManager : MonoBehaviour
     public static City baseCity {get; private set;}
     public static City selectedCity {get; private set;}
 
+    public InvestigateRegion investigateRegionInstance {get; private set;}
     public Deploy deployInstance {get; private set;}
+    public Withdrawal withdrawalInstance {get; private set;}
+    public Assassination assassinationInstance {get; private set;}
+    public Persuasion persuasionInstance {get; private set;}
+
+    private TextMeshProUGUI[] cityTexts;
 
     [SerializeField]
-    private GameObject warningMessage1;
+    private GameObject cityInformation;
 
     [SerializeField]
-    private TextMeshProUGUI cityInfo;
+    private GameObject InvestigateRegionScript;
 
     [SerializeField]
     private GameObject DeployScript;
+
+    [SerializeField]
+    private GameObject WithdrawalScript;
+
+    [SerializeField]
+    private GameObject AssassinationScript;
+
+    [SerializeField]
+    private GameObject PersuasionScript;
 
     // 싱글톤 접근용 프로퍼티
     public static TacticalActionManager instance
@@ -54,6 +69,13 @@ public class TacticalActionManager : MonoBehaviour
     {
         selectedCityNumber = -1;
         deployInstance = DeployScript.GetComponent<Deploy>();
+        investigateRegionInstance = InvestigateRegionScript.GetComponent<InvestigateRegion>();
+        withdrawalInstance = WithdrawalScript.GetComponent<Withdrawal>();
+        assassinationInstance = AssassinationScript.GetComponent<Assassination>();
+        persuasionInstance = PersuasionScript.GetComponent<Persuasion>();
+
+        cityTexts = cityInformation.GetComponentsInChildren<TextMeshProUGUI>();
+        ResetCityInfo();
     }
 
     // Update is called once per frame
@@ -69,31 +91,43 @@ public class TacticalActionManager : MonoBehaviour
         baseCity = CityManager.GetCityInfo(0);
         selectedCity = CityManager.GetCityInfo(cityNumber);
 
-
         ReflectCityInfo();
 
-
         ShowCityInfo();
+    }
+
+    public void ResetSelectedCity()
+    {
+        selectedCityNumber = -1;
+        ResetCityInfo();
+    }
+
+    public void RefreshSelectedCity()
+    {
+        SelectCity(selectedCityNumber);
     }
 
     public void ReflectCityInfo()
     {
         deployInstance.ReflectCityInfo(baseCity, selectedCity);
+        withdrawalInstance.ReflectCityInfo(selectedCity);
+        assassinationInstance.ReflectCityInfo(baseCity, selectedCity);
+        persuasionInstance.ReflectCityInfo(baseCity, selectedCity);
     }
 
     public void ShowCityInfo()
     {
-        cityInfo.text = "City Number : " + selectedCityNumber;
+        cityTexts[1].text = selectedCity.name;
+        cityTexts[3].text = selectedCity.type.ToString();
+        cityTexts[5].text = selectedCity.buildings.ToString();
+        cityTexts[7].text = selectedCity.traits.ToString();
     }
 
-    public void ShowWarningMessage1()
+    public void ResetCityInfo()
     {
-        if(selectedCityNumber == -1)
-            warningMessage1.gameObject.SetActive(true);
-    }
-
-    public void HideWarningMessage1()
-    {
-        warningMessage1.gameObject.SetActive(false);
+        cityTexts[1].text = "X";
+        cityTexts[3].text = "X";
+        cityTexts[5].text = "X";
+        cityTexts[7].text = "X";
     }
 }

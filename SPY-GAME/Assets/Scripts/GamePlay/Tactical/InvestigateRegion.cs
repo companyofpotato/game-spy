@@ -18,6 +18,6 @@ public class InvestigateRegion : MonoBehaviour
 
     public void Execute()
     {
-        
+        //EventManager.AddAction(newAction);
     }
 }

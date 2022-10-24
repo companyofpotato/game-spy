@@ -15,4 +15,9 @@ public class Record : MonoBehaviour
     {
         
     }
+
+    public void TT()
+    {
+        Debug.Log("tt");
+    }
 }

@@ -20,6 +20,21 @@ public class GamePlayUIManager : MonoBehaviour
     [SerializeField]
     private GameObject[] tacticalViews;
 
+    [SerializeField]
+    private GameObject unselectedCityView;
+
+    [SerializeField]
+    private GameObject lowMoneyView;
+
+    [SerializeField]
+    private GameObject unselectedAgentView;
+
+    [SerializeField]
+    private GameObject unselectedTargetView;
+
+    [SerializeField]
+    private GameObject unselectedMethodView;
+
     // 싱글톤 접근용 프로퍼티
     public static GamePlayUIManager instance
     {
@@ -58,34 +73,68 @@ public class GamePlayUIManager : MonoBehaviour
         
     }
 
-    public void showStrategicView(int n)
+    public void ShowStrategicView(int n)
+    {
+        HideAllViews();
+        strategicViews[n].gameObject.SetActive(true);
+    }
+
+    public void HideStrategicView(int n)
+    {
+        strategicViews[n].gameObject.SetActive(false);
+    }
+
+    public void ShowTacticalView(int n)
+    {
+        if(TacticalActionManager.selectedCityNumber == -1)
+        {
+            unselectedCityView.gameObject.SetActive(true);
+            return;
+        }
+        
+        HideAllViews();
+        tacticalViews[n].gameObject.SetActive(true);
+    }
+
+    public void HideTacticalView(int n)
+    {
+        tacticalViews[n].gameObject.SetActive(false);
+    }
+
+    public void HideAllViews()
     {
         for(int i = 0;i < strategicViewsCount;i++)
         {
             strategicViews[i].gameObject.SetActive(false);
         }
-        strategicViews[n].gameObject.SetActive(true);
-    }
-
-    public void hideStrategicView(int n)
-    {
-        strategicViews[n].gameObject.SetActive(false);
-    }
-
-    public void showTacticalView(int n)
-    {
-        if(TacticalActionManager.selectedCityNumber == -1)
-            return;
-        
         for(int i = 0;i < tacticalViewsCount;i++)
         {
             tacticalViews[i].gameObject.SetActive(false);
         }
-        tacticalViews[n].gameObject.SetActive(true);
     }
 
-    public void hideTacticalView(int n)
+    public void HideUnselectedCityView()
     {
-        tacticalViews[n].gameObject.SetActive(false);
+        unselectedCityView.gameObject.SetActive(false);
+    }
+
+    public void HideLowMoneyView()
+    {
+        lowMoneyView.gameObject.SetActive(false);
+    }
+
+    public void HideUnselectedAgentView()
+    {
+        unselectedAgentView.gameObject.SetActive(false);
+    }
+
+    public void HideUnselectedTargetView()
+    {
+        unselectedTargetView.gameObject.SetActive(false);
+    }
+
+    public void HideUnselectedMethodView()
+    {
+        unselectedMethodView.gameObject.SetActive(false);
     }
 }
