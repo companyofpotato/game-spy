@@ -120,6 +120,9 @@ public class Assassination : MonoBehaviour
     private GameObject oddInformation;
 
     [SerializeField]
+    private TextMeshProUGUI costText;
+
+    [SerializeField]
     private GameObject equipmentInformation;
 
     [SerializeField]
@@ -226,6 +229,12 @@ public class Assassination : MonoBehaviour
         equipmentSuccess = 0;
         equipmentAft = 0;
         equipmentEscape = 0;
+        ChangeCostText();
+    }
+
+    public void ChangeCostText()
+    {
+        costText.text = $"$ {actionCost}";
     }
 
     //선택된 도시의 정보를 AssassinationView에 반영한다.
@@ -273,8 +282,6 @@ public class Assassination : MonoBehaviour
         {
             equipmentList.Add(false);
             
-            if(EquipmentManager.equipmentCountList[i] <= 0)
-                continue;
             if(usableEquipment.Contains(i) == true)
             {
                 id = i;
@@ -376,6 +383,8 @@ public class Assassination : MonoBehaviour
             previouslySelectedMethodButton = self;
             selectedMethod = EquipmentManager.equipmentList[id];
             self.GetComponentInChildren<Image>().color = Color.green;
+            actionCost += EquipmentManager.equipmentList[id].cost;
+            ChangeCostText();
         }
         else if(selectedMethodId == id)
         {
@@ -383,17 +392,23 @@ public class Assassination : MonoBehaviour
             equipmentList[id] = false;
             self.GetComponentInChildren<Image>().color = Color.white;
             ResetOddScreen();
+            actionCost -= EquipmentManager.equipmentList[id].cost;
+            ChangeCostText();
         }
         else
         {
             previouslySelectedMethodButton.GetComponentInChildren<Image>().color = Color.white;
             equipmentList[selectedMethodId] = false;
+            actionCost -= EquipmentManager.equipmentList[selectedMethodId].cost;
+            ChangeCostText();
 
             selectedMethod = EquipmentManager.equipmentList[id];
             selectedMethodId = id;
             previouslySelectedMethodButton = self;
             equipmentList[id] = true;
             self.GetComponentInChildren<Image>().color = Color.green;
+            actionCost += EquipmentManager.equipmentList[id].cost;
+            ChangeCostText();
         }
         if(selectedAgentId != -1 && selectedMethodId != -1)
         {
@@ -416,6 +431,8 @@ public class Assassination : MonoBehaviour
             equipmentSuccess -= EquipmentManager.equipmentList[id].success;
             equipmentAft -= EquipmentManager.equipmentList[id].aft;
             equipmentEscape -= EquipmentManager.equipmentList[id].escape;
+            actionCost -= EquipmentManager.equipmentList[id].cost;
+            ChangeCostText();
         }
         else
         {
@@ -425,6 +442,8 @@ public class Assassination : MonoBehaviour
             equipmentSuccess += EquipmentManager.equipmentList[id].success;
             equipmentAft += EquipmentManager.equipmentList[id].aft;
             equipmentEscape += EquipmentManager.equipmentList[id].escape;
+            actionCost += EquipmentManager.equipmentList[id].cost;
+            ChangeCostText();
         }
         if(selectedAgentId != -1 && selectedTargetId != -1 && selectedMethodId != -1)
         {
@@ -437,82 +456,7 @@ public class Assassination : MonoBehaviour
         HideEquipmentInformation();
         ShowPersonInformation();
         shownPerson = PersonManager.personList[id];
-        
-        personTexts[1].text = shownPerson.firstName;
-        personTexts[3].text = shownPerson.familyName;
-        personTexts[5].text = shownPerson.codename;
-        personTexts[7].text = shownPerson.age.ToString();
-        if(shownPerson.gender)
-            personTexts[9].text = "Male";
-        else if(shownPerson.gender)
-            personTexts[9].text = "Female";
-        if(shownPerson.sexualHetero && shownPerson.sexualHomo)
-            personTexts[11].text = "bisexual";
-        else if(shownPerson.sexualHetero)
-            personTexts[11].text = "Heterosexual";
-        else if(shownPerson.sexualHomo)
-            personTexts[11].text = "Homosexaul";
-        personTexts[13].text = shownPerson.appearance.ToString();
-        personTexts[15].text = shownPerson.status.ToString();//문자열로 수정하기
-        if(shownPerson.belong > 0)
-            personTexts[17].text = "Friendly";
-        else if(shownPerson.belong < 0)
-            personTexts[17].text = "Enemy";
-        else
-            personTexts[17].text = "Neutrality";
-        if(shownPerson.belong == 0)
-            personTexts[19].text = "X";
-        else
-            personTexts[19].text = shownPerson.passion.ToString();
-        if(shownPerson.belong == 0)
-            personTexts[21].text = "X";
-        else
-            personTexts[21].text = shownPerson.isAgent ? "Agent" : "Informant";
-        personTexts[23].text = CityManager.cityList[shownPerson.location].name;
-        personTexts[25].text = shownPerson.exposure.ToString();
-        personTexts[27].text = shownPerson.rank.ToString();
-        personTexts[29].text = shownPerson.aim.ToString();
-        personTexts[31].text = shownPerson.stealth.ToString();
-        personTexts[33].text = shownPerson.handicraft.ToString();
-        personTexts[35].text = shownPerson.analysis.ToString();
-        personTexts[37].text = shownPerson.narration.ToString();
-
-        personTexts[39].text = shownPerson.trait.ToString();//추후에 수정 필요
-        personTexts[41].text = shownPerson.perk.ToString();//추후에 수정 필요
-
-        for(int i = 0, idx = 1;i < 20;i++)
-        {
-            if(shownPerson.CheckReveal(i) == false)
-            {
-                personTexts[idx].text = "???";
-            }
-            if(i == 5)
-            {
-                i++;
-                if(shownPerson.CheckReveal(i) == false)
-                {
-                    personTexts[idx].text = "???";
-                }
-            }
-            idx += 2;
-        }
-
-        for(int i = 0;i < 7;i++)
-        {
-            if(shownPerson.CheckReal(i))
-            {
-                switch(i)
-                {
-                    case 0 : personTexts[18].color = Color.blue; personTexts[19].color = Color.blue; break;
-                    case 1 : personTexts[24].color = Color.blue; personTexts[25].color = Color.blue; break;
-                    case 2 : personTexts[28].color = Color.blue; personTexts[29].color = Color.blue; break;
-                    case 3 : personTexts[30].color = Color.blue; personTexts[31].color = Color.blue; break;
-                    case 4 : personTexts[32].color = Color.blue; personTexts[33].color = Color.blue; break;
-                    case 5 : personTexts[34].color = Color.blue; personTexts[35].color = Color.blue; break;
-                    case 6 : personTexts[36].color = Color.blue; personTexts[37].color = Color.blue; break;
-                }
-            }
-        }
+        GamePlayUIManager.UpdatePersonInformationScreen(shownPerson, personTexts);
     }
 
     public void UpdateEquipmentInformationScreen(int id)
@@ -520,25 +464,7 @@ public class Assassination : MonoBehaviour
         HidePersonInformation();
         ShowEquipmentInformation();
         shownEquipment = EquipmentManager.equipmentList[id];
-
-        equipmentTexts[1].text = shownEquipment.name;
-        equipmentTexts[3].text = shownEquipment.description;
-        if(shownEquipment.bef < 0)
-            equipmentTexts[5].text = shownEquipment.bef.ToString() + "%";
-        else
-            equipmentTexts[5].text = "+" + shownEquipment.bef.ToString() + "%";
-        if(shownEquipment.success < 0)
-            equipmentTexts[7].text = shownEquipment.success.ToString() + "%";
-        else
-            equipmentTexts[7].text = "+" + shownEquipment.success.ToString() + "%";
-        if(shownEquipment.aft < 0)
-            equipmentTexts[9].text = shownEquipment.aft.ToString() + "%";
-        else
-            equipmentTexts[9].text = "+" + shownEquipment.aft.ToString() + "%";
-        if(shownEquipment.escape < 0)
-            equipmentTexts[11].text = shownEquipment.escape.ToString() + "%";
-        else
-            equipmentTexts[11].text = "+" + shownEquipment.escape.ToString() + "%";
+        GamePlayUIManager.UpdateEquipmentInformationScreen(shownEquipment, equipmentTexts);
     }
 
     public void CalculateByAgent()
@@ -655,7 +581,6 @@ public class Assassination : MonoBehaviour
             PersonManager.ChangeStatus(selectedAgentId, 3);
             PersonManager.ChangeIsTargeted(selectedTargetId, 3);
             ResourceManager.ChangeMoney(ResourceManager.money - actionCost);
-            EquipmentManager.UseEquipment(equipmentList);
 
             confirmationView.gameObject.SetActive(true);
         }
