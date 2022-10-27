@@ -1,11 +1,11 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - ActionManager
     - Assassination
     - CityManager
     - Deploy
     - EquipmentManager
-    - EventManager
     - GameManager
     - GamePlayUIManager
     - InvestigatePerson
@@ -61,6 +61,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.GridLayoutGroup
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.LayoutElement
@@ -119,6 +120,9 @@ ScriptsOnlyBuild:
     fullTypeName: GamePlayUIManager
     methodName: HideTacticalView
   - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: SelectCity
+  - assembly: Assembly-CSharp
     fullTypeName: GamePlayUIManager
     methodName: HideTacticalView
   - assembly: Assembly-CSharp
@@ -137,13 +141,13 @@ ScriptsOnlyBuild:
     fullTypeName: GamePlayUIManager
     methodName: HideUnselectedCityView
   - assembly: Assembly-CSharp
-    fullTypeName: TacticalActionManager
-    methodName: SelectCity
+    fullTypeName: GamePlayUIManager
+    methodName: ShowStrategicView
   - assembly: Assembly-CSharp
     fullTypeName: MainMenuManager
     methodName: ShowLoadGameView
   - assembly: Assembly-CSharp
-    fullTypeName: EventManager
+    fullTypeName: ActionManager
     methodName: HideReportView
   - assembly: Assembly-CSharp
     fullTypeName: GamePlayUIManager
@@ -167,6 +171,9 @@ ScriptsOnlyBuild:
     fullTypeName: GamePlayUIManager
     methodName: ShowTacticalView
   - assembly: Assembly-CSharp
+    fullTypeName: Withdrawal
+    methodName: HideInformationScreen
+  - assembly: Assembly-CSharp
     fullTypeName: TacticalActionManager
     methodName: SelectCity
   - assembly: Assembly-CSharp
@@ -185,8 +192,17 @@ ScriptsOnlyBuild:
     fullTypeName: Assassination
     methodName: ShowPersonScrolls
   - assembly: Assembly-CSharp
+    fullTypeName: Assassination
+    methodName: HideInformationScreen
+  - assembly: Assembly-CSharp
     fullTypeName: GamePlayUIManager
     methodName: ShowTacticalView
+  - assembly: Assembly-CSharp
+    fullTypeName: Persuasion
+    methodName: HideInformationScreen
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: SelectCity
   - assembly: Assembly-CSharp
     fullTypeName: Assassination
     methodName: HideEquipScrolls
@@ -197,13 +213,13 @@ ScriptsOnlyBuild:
     fullTypeName: InvestigateRegion
     methodName: Execute
   - assembly: Assembly-CSharp
-    fullTypeName: EventManager
+    fullTypeName: ActionManager
     methodName: EndTurn
   - assembly: Assembly-CSharp
-    fullTypeName: EventManager
+    fullTypeName: ActionManager
     methodName: MakeReport
   - assembly: Assembly-CSharp
-    fullTypeName: EventManager
+    fullTypeName: ActionManager
     methodName: ShowReportView
   - assembly: Assembly-CSharp
     fullTypeName: ResourceManager
@@ -214,6 +230,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: CityManager
     methodName: ResetPersonListOfCity
+  - assembly: Assembly-CSharp
+    fullTypeName: GamePlayUIManager
+    methodName: HideAllViews
   - assembly: Assembly-CSharp
     fullTypeName: Persuasion
     methodName: PlusMoney
@@ -254,8 +273,14 @@ ScriptsOnlyBuild:
     fullTypeName: GamePlayUIManager
     methodName: ShowTacticalView
   - assembly: Assembly-CSharp
+    fullTypeName: Deploy
+    methodName: HideInformationScreen
+  - assembly: Assembly-CSharp
     fullTypeName: MainMenuManager
     methodName: ShowSaveGameView
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: SelectCity
   - assembly: Assembly-CSharp
     fullTypeName: MainMenuManager
     methodName: ExitGame
@@ -265,6 +290,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: Assassination
     methodName: Execute
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalActionManager
+    methodName: SelectCity
   - assembly: Assembly-CSharp
     fullTypeName: TacticalActionManager
     methodName: RefreshSelectedCity
@@ -281,11 +309,8 @@ ScriptsOnlyBuild:
     fullTypeName: MainMenuManager
     methodName: LoadMainMenuScene
   - assembly: Assembly-CSharp
-    fullTypeName: TacticalActionManager
-    methodName: SelectCity
-  - assembly: Assembly-CSharp
     fullTypeName: Persuasion
-    methodName: UpdateOddScreenText
+    methodName: CalculateByMoney
   - assembly: Assembly-CSharp
     fullTypeName: TacticalActionManager
     methodName: RefreshSelectedCity
@@ -377,6 +402,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4926}
     - Class: 114
       Script: {instanceID: 5126}
+    - Class: 114
+      Script: {instanceID: 5614}
     - Class: 114
       Script: {instanceID: 5794}
     - Class: 114
@@ -536,7 +563,7 @@ ScriptsOnlyBuild:
     className: UnityOnTriggerEnterMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 47230b89d259add628b204352fa13ab6
+      Hash: 293bf29f3363eba1bb2ba718c874c25a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TacticalActionManager
@@ -650,7 +677,7 @@ ScriptsOnlyBuild:
     className: UnityMessageListener
   - hash:
       serializedVersion: 2
-      Hash: d9ea208f4499190e3690416b8b4f0a4c
+      Hash: 6bf20bd9fcbed69a3f73f543de6eb8e3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ResourceManager
@@ -800,7 +827,7 @@ ScriptsOnlyBuild:
     className: VariablesAsset
   - hash:
       serializedVersion: 2
-      Hash: d86ae859605e9f2239ee3b681817df93
+      Hash: ee6cef8fd03fb63042be967a8c708a94
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Assassination
@@ -998,10 +1025,10 @@ ScriptsOnlyBuild:
     className: CameraController
   - hash:
       serializedVersion: 2
-      Hash: c5061e732840fd1e2e6c49a3a32b728e
+      Hash: eda17aaa3b8801bbe4c76faac4bdd555
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: EventManager
+    className: ActionManager
   - hash:
       serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
@@ -1010,7 +1037,7 @@ ScriptsOnlyBuild:
     className: DictionaryAsset
   - hash:
       serializedVersion: 2
-      Hash: 32655d4f7b1f8fd21fcf7ed75493e41b
+      Hash: 4e184f5d29f44f06ff48be1173bd1783
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Persuasion
@@ -1388,7 +1415,7 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 521c465b4a3a87d9712ca065417fd1aa
+      Hash: 90f6b55bd82a2f58b632ddbc73851a65
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Withdrawal
@@ -1646,7 +1673,7 @@ ScriptsOnlyBuild:
     className: TeleType
   - hash:
       serializedVersion: 2
-      Hash: 521c465b4a3a87d9712ca065417fd1aa
+      Hash: 90f6b55bd82a2f58b632ddbc73851a65
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Deploy

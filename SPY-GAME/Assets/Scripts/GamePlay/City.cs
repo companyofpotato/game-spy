@@ -11,6 +11,9 @@ public class City
 
     public List<int> personList {get; private set;} //값은 Person의 id이다.
 
+    public List<Action> actionList {get; private set;}
+    public string reportText {get; private set;}
+
     public City(int id, string name, int type, int buildings, int traits, List<int> personList)
     {
         this.id = id;
@@ -19,6 +22,9 @@ public class City
         this.buildings = buildings;
         this.traits = traits;
         this.personList = personList;
+
+        actionList = new List<Action>();
+        reportText = "";
     }
 
     public void ChangeInfo(City changedCity)
@@ -59,5 +65,20 @@ public class City
     public void ChangePersonList(List<int> newPersonList)
     {
         this.personList = newPersonList;
+    }
+
+    public void AddAction(Action newAction)
+    {
+        actionList.Add(newAction);
+    }
+
+    public void AddReport(string text)
+    {
+        reportText += text + "\n";
+    }
+
+    public bool CheckBuilding(int num)
+    {
+        return ((1 << num) & buildings) > 0;
     }
 }

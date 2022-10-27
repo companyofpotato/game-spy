@@ -29,17 +29,17 @@ public class Persuasion : MonoBehaviour
 
     private int agentBef;
     private int agentSuccess;
-    //private int agentAft;
+    private int agentAft;
     private int agentEscape;
 
     private int targetBef;
     private int targetSuccess;
-    //private int targetAft;
+    private int targetAft;
     private int targetEscape;
 
     private int cityBef;
     private int citySuccess;
-    //private int cityAft;
+    private int cityAft;
     private int cityEscape;
 
     private int befReal;
@@ -49,12 +49,12 @@ public class Persuasion : MonoBehaviour
 
     private int agentBefReal;
     private int agentSuccessReal;
-    //private int agentAft;
+    private int agentAftReal;
     private int agentEscapeReal;
 
     private int targetBefReal;
     private int targetSuccessReal;
-    //private int targetAftReal;
+    private int targetAftReal;
     private int targetEscapeReal;
 
     private int moneySuccess;
@@ -376,12 +376,12 @@ public class Persuasion : MonoBehaviour
     {
         agentBef = selectedAgent.exposure * 1 + Math.Abs(selectedAgent.appearance - 60) - selectedAgent.stealth;
         agentSuccess = selectedAgent.narration;
-        //agentAft = 0;
+        agentAft = 0;
         agentEscape = (selectedAgent.stealth + selectedAgent.narration) / 2 - selectedAgent.exposure;
 
         agentBefReal = selectedAgent.exposureReal * 1 + Math.Abs(selectedAgent.appearance - 60) - selectedAgent.stealthReal;
         agentSuccessReal = selectedAgent.narrationReal;
-        //agentAftReal = 0;
+        agentAftReal = 0;
         agentEscapeReal = (selectedAgent.stealthReal + selectedAgent.narrationReal) / 2 - selectedAgent.exposureReal;
     }
 
@@ -395,7 +395,7 @@ public class Persuasion : MonoBehaviour
         if(PersonManager.CheckTrait(selectedTargetId, 0))
             targetSuccess += 40;
         targetSuccess -= (selectedTarget.analysis + selectedTarget.narration + selectedTarget.passion) / 6;
-        //targetAft = 0;
+        targetAft = 0;
         targetEscape = 0;
 
         targetBefReal = selectedTarget.analysisReal / 2;
@@ -406,7 +406,7 @@ public class Persuasion : MonoBehaviour
         if(PersonManager.CheckTraitReal(selectedTargetId, 0))
             targetSuccessReal += 40;
         targetSuccessReal -= (selectedTarget.analysisReal + selectedTarget.narrationReal + selectedTarget.passionReal) / 4;
-        //targetAftReal = 0;
+        targetAftReal = 0;
         targetEscapeReal = 0;
     }
 
@@ -414,8 +414,16 @@ public class Persuasion : MonoBehaviour
     {
         cityBef = 0;
         citySuccess = 0;
-        //cityAft = 0;
+        cityAft = 0;
         cityEscape = 0;
+
+        
+        if(selectedCity.CheckBuilding(3) || selectedCity.CheckBuilding(4))
+        {
+            cityBef -= 10;
+            cityAft += 10;
+            cityEscape += 10;
+        }
     }
 
     public void CalculateByMoney()
@@ -441,12 +449,7 @@ public class Persuasion : MonoBehaviour
     {
         bef = agentBef + targetBef + cityBef;
         success = agentSuccess + targetSuccess + citySuccess + moneySuccess;
-        if(success > 100)
-            aft = 0;
-        else if(success < 0)
-            aft = 100;
-        else
-            aft = 100 - success;
+        aft = agentAft + targetAft + cityAft;
         escape = agentEscape + targetEscape + cityEscape;
 
         oddTexts[1].text = bef.ToString() + "%";
@@ -456,12 +459,7 @@ public class Persuasion : MonoBehaviour
 
         befReal = agentBefReal + targetBefReal + cityBef;
         successReal = agentSuccessReal + targetSuccessReal + citySuccess + moneySuccessReal;
-        if(successReal > 100)
-            aftReal = 0;
-        else if(successReal < 0)
-            aftReal = 100;
-        else
-            aftReal = 100 - successReal;
+        aftReal = agentAftReal + targetAftReal + cityAft;
         escapeReal = agentEscapeReal + targetEscapeReal + cityEscape;
     }
     
@@ -497,7 +495,7 @@ public class Persuasion : MonoBehaviour
         else
         {
             Action newAction = new Action(4, selectedAgentId, selectedCity.id, selectedTargetId, 0, equipmentList, befReal, successReal, aftReal, escapeReal);//4는 Persuasion의 type이다.
-            EventManager.AddAction(newAction);
+            ActionManager.AddAction(newAction);
             PersonManager.ChangeStatus(selectedAgentId, 4);
             PersonManager.ChangeIsTargeted(selectedTargetId, 4);
             ResourceManager.ChangeMoney(ResourceManager.money - actionCost);

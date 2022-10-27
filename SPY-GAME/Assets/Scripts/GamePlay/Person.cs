@@ -1,6 +1,7 @@
 /*
 - status
--14 : 인물이 실종된 상태
+-15 : 인물이 실종된 상태
+-14 : 인물이 생포된 상태
 -13 : 인물이 사망한 상태
 -12 ~ -1 : 인물이 부상당한 상태, 숫자만큼 턴을 쉰다. 매 턴 종료 시 해당 값이 1씩 증가한다.
 0 : 행동 가능한 상태
@@ -24,6 +25,8 @@
 - trait
 - 0번째 : 이중 첩자 함정
 */
+
+using System.Collections.Generic;
 
 public class Person
 {
@@ -75,6 +78,10 @@ public class Person
     public int perk {get; private set;}
     public int perkReal {get; private set;}
     public int perkReveal {get; private set;}
+
+    public List<Action> actionList {get; private set;}
+    public List<Action> doubleList {get; private set;}
+    public string reportText {get; private set;}
 
 /*
     public Person()
@@ -130,6 +137,10 @@ public class Person
         this.perk = perk;
         this.perkReal = perk;
         this.perkReveal = 0;
+
+        actionList = new List<Action>();
+        doubleList = new List<Action>();
+        reportText = "";
     }
 
     public void ChangeStatus(int after)
@@ -180,6 +191,21 @@ public class Person
     public bool CheckReal(int check)
     {
         return ((this.isReal & (1 << check)) > 0);
+    }
+
+    public void AddAction(Action newAction)
+    {
+        actionList.Add(newAction);
+    }
+
+    public void AddReport(string text)
+    {
+        reportText += text + "\n";
+    }
+
+    public void AddDoubleAction(Action newAction)
+    {
+        doubleList.Add(newAction);
     }
 }
 

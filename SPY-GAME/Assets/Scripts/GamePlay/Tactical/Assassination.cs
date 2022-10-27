@@ -595,6 +595,13 @@ public class Assassination : MonoBehaviour
         citySuccess = 0;
         cityAft = 0;
         cityEscape = 0;
+
+        if(selectedCity.CheckBuilding(3) || selectedCity.CheckBuilding(4))
+        {
+            cityBef -= 10;
+            cityAft += 10;
+            cityEscape += 10;
+        }
     }
 
     public void ResetOddScreen()
@@ -644,7 +651,7 @@ public class Assassination : MonoBehaviour
         else
         {
             Action newAction = new Action(3, selectedAgentId, selectedCity.id, selectedTargetId, selectedMethodId, equipmentList, befReal, successReal, aftReal, escapeReal);//3는 Assassination의 type이다.
-            EventManager.AddAction(newAction);
+            ActionManager.AddAction(newAction);
             PersonManager.ChangeStatus(selectedAgentId, 3);
             PersonManager.ChangeIsTargeted(selectedTargetId, 3);
             ResourceManager.ChangeMoney(ResourceManager.money - actionCost);

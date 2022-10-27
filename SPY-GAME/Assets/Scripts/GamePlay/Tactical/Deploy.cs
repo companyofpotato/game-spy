@@ -377,6 +377,12 @@ public class Deploy : MonoBehaviour
         citySuccess = 0;
         cityAft = 0;
         cityEscape = 0;
+        
+        if(selectedCity.CheckBuilding(3) || selectedCity.CheckBuilding(4))
+        {
+            cityBef += 10;
+            cityAft += 10;
+        }
     }
 
     public void ResetOddScreen()
@@ -418,7 +424,7 @@ public class Deploy : MonoBehaviour
         else
         {
             Action newAction = new Action(1, selectedAgentId, baseCity.id, selectedCity.id, 0, equipmentList, befReal, successReal, aftReal, escapeReal);//1은 Deploy의 type이다.
-            EventManager.AddAction(newAction);
+            ActionManager.AddAction(newAction);
             PersonManager.ChangeStatus(selectedAgentId, 1);
             ResourceManager.ChangeMoney(ResourceManager.money - actionCost);
             EquipmentManager.UseEquipment(equipmentList);

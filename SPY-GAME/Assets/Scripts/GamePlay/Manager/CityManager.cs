@@ -15,7 +15,9 @@ public class CityManager : MonoBehaviour
 
     public static List<City> cityList {get; private set;}
 
-    static List<int> emptyPersonList = new List<int>(new int[] {-1});
+    static List<int> emptyPersonList = new List<int>(new int[] {});
+
+    public static int buildingCounts {get; private set;}
 
     // 싱글톤 접근용 프로퍼티
     public static CityManager instance
@@ -47,15 +49,18 @@ public class CityManager : MonoBehaviour
     void Start()
     {
         cityList = new List<City>();
-        cityList.Add(new City(0, "base", -1, -1, -1, emptyPersonList));
-        cityList.Add(new City(1, "alpha", 0, 0, 0, emptyPersonList));
-        cityList.Add(new City(2, "bravo", 0, 0, 0, emptyPersonList));
-        cityList.Add(new City(3, "charlie", 0, 0, 0, emptyPersonList));
-        cityList.Add(new City(4, "delta", 0, 0, 0, emptyPersonList));
-        cityList.Add(new City(5, "echo", 0, 0, 0, emptyPersonList));
-        cityList.Add(new City(6, "foxtrot", 0, 0, 0, emptyPersonList));
-        cityList.Add(new City(7, "golf", 0, 0, 0, emptyPersonList));
+        cityList.Add(new City(0, "resistance base", -1, -1, -1, emptyPersonList));
+        cityList.Add(new City(1, "Alpha", 0, 65, 0, emptyPersonList));
+        cityList.Add(new City(2, "Bravo", 0, 4, 0, emptyPersonList));
+        cityList.Add(new City(3, "Charlie", 0, 35, 0, emptyPersonList));
+        cityList.Add(new City(4, "Delta", 0, 24 + 128 + 256, 0, emptyPersonList));
+        cityList.Add(new City(5, "Echo", 0, 32 + 512, 0, emptyPersonList));
+        cityList.Add(new City(6, "Foxtrot", 0, 69, 0, emptyPersonList));
+        cityList.Add(new City(7, "Golf", 0, 9 + 256 + 512, 0, emptyPersonList));
+        cityList.Add(new City(8, "Hotel", 0, 16 + 32 + 128, 0, emptyPersonList));
+        cityList.Add(new City(9, "Empire base", -1, -1, -1, emptyPersonList));
 
+        buildingCounts = 10;
     }
 
     // Update is called once per frame
@@ -64,9 +69,9 @@ public class CityManager : MonoBehaviour
         
     }
 
-    public static City GetCityInfo(int cityNumber)
+    public static City GetCityInfo(int id)
     {
-        return cityList[cityNumber];
+        return cityList[id];
     }
 
     public static void ResetPersonListOfCity()
@@ -90,38 +95,43 @@ public class CityManager : MonoBehaviour
         }
     }
 
-    public static void ChangeCityInfo(int cityNumber, City changedCity)
+    public static void ChangeCityInfo(int id, City changedCity)
     {
 
     }
 
-    public static void ChangeCityId(int cityNumber, int id)
+    public static void ChangeCityName(int id, string name)
     {
-        cityList[cityNumber].ChangeId(id);
+        cityList[id].ChangeName(name);
     }
 
-    public static void ChangeCityName(int cityNumber, string name)
+    public static void ChangeCityType(int id, int type)
     {
-        cityList[cityNumber].ChangeName(name);
+        cityList[id].ChangeType(type);
     }
 
-    public static void ChangeCityType(int cityNumber, int type)
+    public static void ChangeCityBuildings(int id, int buildings)
     {
-        cityList[cityNumber].ChangeType(type);
+        cityList[id].ChangeBuildings(buildings);
     }
 
-    public static void ChangeCityBuildings(int cityNumber, int buildings)
+    public static void ChangeCityTraits(int id, int traits)
     {
-        cityList[cityNumber].ChangeBuildings(buildings);
+        cityList[id].ChangeTraits(traits);
     }
 
-    public static void ChangeCityTraits(int cityNumber, int traits)
+    public static void ChangeCityPersonList(int id, List<int> personList)
     {
-        cityList[cityNumber].ChangeTraits(traits);
+        cityList[id].ChangePersonList(personList);
     }
 
-    public static void ChangeCityPersonList(int cityNumber, List<int> personList)
+    public static void AddAction(int id, Action newAction)
     {
-        cityList[cityNumber].ChangePersonList(personList);
+        cityList[id].AddAction(newAction);
+    }
+
+    public static void AddReport(int id, string reportText)
+    {
+        cityList[id].AddReport(reportText);
     }
 }

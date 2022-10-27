@@ -359,7 +359,7 @@ public class Withdrawal : MonoBehaviour
     public void CalculateByAgent()
     {
         agentBef = selectedAgent.exposure * 1 + Math.Abs(selectedAgent.appearance - 60) - selectedAgent.stealth;
-        agentSuccess = (int)(selectedAgent.stealth * 0.66 + selectedAgent.narration * 0.33);
+        agentSuccess = (int)(selectedAgent.stealth * 0.7 + selectedAgent.narration * 0.3);
         agentAft = 0;
         agentEscape = (selectedAgent.stealth + selectedAgent.narration) / 2 - selectedAgent.exposure;
 
@@ -375,6 +375,14 @@ public class Withdrawal : MonoBehaviour
         citySuccess = 0;
         cityAft = 0;
         cityEscape = 0;
+
+        
+        if(selectedCity.CheckBuilding(3) || selectedCity.CheckBuilding(4))
+        {
+            cityBef -= 10;
+            cityAft += 10;
+            cityEscape += 10;
+        }
     }
 
     public void ResetOddScreen()
@@ -416,7 +424,7 @@ public class Withdrawal : MonoBehaviour
         else
         {
             Action newAction = new Action(2, selectedAgentId, selectedCity.id, 0, 0, equipmentList, befReal, successReal, aftReal, escapeReal);//2는 Withdrawal의 type이다. 0은 baseCity의 id이다.
-            EventManager.AddAction(newAction);
+            ActionManager.AddAction(newAction);
             PersonManager.ChangeStatus(selectedAgentId, 2);
             ResourceManager.ChangeMoney(ResourceManager.money - actionCost);
             EquipmentManager.UseEquipment(equipmentList);

@@ -168,6 +168,11 @@ public class PersonManager : MonoBehaviour
         personList[id].ChangeStatus(-14);
     }
 
+    public static void Missed(int id)
+    {
+        personList[id].ChangeStatus(-15);
+    }
+
     public static void ChangeCity(int id, int after)
     {
         personList[id].ChangeCity(after);
@@ -191,5 +196,20 @@ public class PersonManager : MonoBehaviour
     public static void RemoveTrait(int id, int remove)
     {
         personList[id].RemoveTrait(remove);
+    }
+
+    public static void AddAction(int id, Action newAction)
+    {
+        personList[id].AddAction(newAction);
+    }
+
+    public static void AddReport(int id, string reportText)
+    {
+        personList[id].AddReport(reportText);
+    }
+
+    public static void AddDoubleAction(int id, Action newAction)
+    {
+        personList[id].AddDoubleAction(newAction);
     }
 }

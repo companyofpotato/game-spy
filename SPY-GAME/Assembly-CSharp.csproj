@@ -58,7 +58,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\GamePlay\Manager\EventManager.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\Manager\ActionManager.cs" />
      <Compile Include="Assets\Scripts\GamePlay\Tactical\Persuasion.cs" />
      <Compile Include="Assets\Scripts\Test.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />

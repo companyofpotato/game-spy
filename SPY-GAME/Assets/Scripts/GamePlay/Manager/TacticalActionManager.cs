@@ -118,9 +118,63 @@ public class TacticalActionManager : MonoBehaviour
     public void ShowCityInfo()
     {
         cityTexts[1].text = selectedCity.name;
-        cityTexts[3].text = selectedCity.type.ToString();
-        cityTexts[5].text = selectedCity.buildings.ToString();
-        cityTexts[7].text = selectedCity.traits.ToString();
+        switch(selectedCity.type)
+        {
+            case 0 : cityTexts[3].text = "Big City"; break;
+            case 1 : cityTexts[3].text = "Middle City"; break;
+            case 2 : cityTexts[3].text = "Small City"; break;
+        }
+
+        int key = 1, idx = 0, max = 1 << CityManager.buildingCounts;
+        for(;key < max;)
+        {
+            if((selectedCity.buildings & key) > 0)
+            {
+                switch(idx)
+                {
+                    case 0 : cityTexts[5].text = "Agency"; break;
+                    case 1 : cityTexts[5].text = "Factory"; break;
+                    case 2 : cityTexts[5].text = "Lab"; break;
+                    case 3 : cityTexts[5].text = "Harbor"; break;
+                    case 4 : cityTexts[5].text = "Airport"; break;
+                    case 5 : cityTexts[5].text = "Supply Depot"; break;
+                    case 6 : cityTexts[5].text = "Army Base"; break;
+                    case 7 : cityTexts[5].text = "Air Base"; break;
+                    case 8 : cityTexts[5].text = "Naval Base"; break;
+                    case 9 : cityTexts[5].text = "Communication Base"; break;
+                }
+                break;
+            }
+            key = key << 1;
+            idx++;
+        }
+
+        key = key << 1;
+        idx++;
+        for(;key < max;)
+        {
+            if((selectedCity.buildings & key) > 0)
+            {
+                cityTexts[5].text += ", ";
+                switch(idx)
+                {
+                    case 0 : cityTexts[5].text += "Agency"; break;
+                    case 1 : cityTexts[5].text += "Factory"; break;
+                    case 2 : cityTexts[5].text += "Lab"; break;
+                    case 3 : cityTexts[5].text += "Harbor"; break;
+                    case 4 : cityTexts[5].text += "Airport"; break;
+                    case 5 : cityTexts[5].text += "Supply Depot"; break;
+                    case 6 : cityTexts[5].text += "Army Base"; break;
+                    case 7 : cityTexts[5].text += "Air Base"; break;
+                    case 8 : cityTexts[5].text += "Naval Base"; break;
+                    case 9 : cityTexts[5].text += "Communication Base"; break;
+                }
+            }
+            key = key << 1;
+            idx++;
+        }
+        
+        cityTexts[7].text = selectedCity.traits.ToString();//추후 수정
     }
 
     public void ResetCityInfo()
