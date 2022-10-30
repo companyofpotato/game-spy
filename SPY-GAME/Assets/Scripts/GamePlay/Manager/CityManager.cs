@@ -49,7 +49,7 @@ public class CityManager : MonoBehaviour
     void Start()
     {
         cityList = new List<City>();
-        cityList.Add(new City(0, "resistance base", -1, -1, -1, emptyPersonList));
+        cityList.Add(new City(0, "Resistance Base", -1, -1, -1, emptyPersonList));
         cityList.Add(new City(1, "Alpha", 0, 65, 0, emptyPersonList));
         cityList.Add(new City(2, "Bravo", 0, 4, 0, emptyPersonList));
         cityList.Add(new City(3, "Charlie", 0, 35, 0, emptyPersonList));
@@ -58,7 +58,7 @@ public class CityManager : MonoBehaviour
         cityList.Add(new City(6, "Foxtrot", 0, 69, 0, emptyPersonList));
         cityList.Add(new City(7, "Golf", 0, 9 + 256 + 512, 0, emptyPersonList));
         cityList.Add(new City(8, "Hotel", 0, 16 + 32 + 128, 0, emptyPersonList));
-        cityList.Add(new City(9, "Empire base", -1, -1, -1, emptyPersonList));
+        cityList.Add(new City(9, "Empire Base", -1, -1, -1, emptyPersonList));
 
         buildingCounts = 10;
     }
@@ -133,5 +133,10 @@ public class CityManager : MonoBehaviour
     public static void AddReport(int id, string reportText)
     {
         cityList[id].AddReport(reportText);
+    }
+
+    public static string GetReportText(int id)
+    {
+        return cityList[id].reportText;
     }
 }

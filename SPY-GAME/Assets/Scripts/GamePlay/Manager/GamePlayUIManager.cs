@@ -140,36 +140,33 @@ public class GamePlayUIManager : MonoBehaviour
 
     public static void UpdatePersonInformationScreen(Person shownPerson, TextMeshProUGUI[] personTexts)
     {
-        personTexts[1].text = shownPerson.firstName;
-        personTexts[3].text = shownPerson.familyName;
-        personTexts[5].text = shownPerson.codename;
-        personTexts[7].text = shownPerson.age.ToString();
+        personTexts[1].text = shownPerson.isAgent ? "Agent" : "Informant";
+        personTexts[3].text = shownPerson.firstName;
+        personTexts[5].text = shownPerson.familyName;
+        personTexts[7].text = shownPerson.codename;
+        personTexts[9].text = shownPerson.age.ToString();
         if(shownPerson.gender)
-            personTexts[9].text = "Male";
+            personTexts[11].text = "Male";
         else if(shownPerson.gender)
-            personTexts[9].text = "Female";
+            personTexts[11].text = "Female";
         if(shownPerson.sexualHetero && shownPerson.sexualHomo)
-            personTexts[11].text = "bisexual";
+            personTexts[13].text = "bisexual";
         else if(shownPerson.sexualHetero)
-            personTexts[11].text = "Heterosexual";
+            personTexts[13].text = "Heterosexual";
         else if(shownPerson.sexualHomo)
-            personTexts[11].text = "Homosexaul";
-        personTexts[13].text = shownPerson.appearance.ToString();
-        personTexts[15].text = shownPerson.status.ToString();//문자열로 수정하기
+            personTexts[13].text = "Homosexaul";
+        personTexts[15].text = shownPerson.appearance.ToString();
+        personTexts[17].text = shownPerson.status.ToString();//문자열로 수정하기
         if(shownPerson.belong > 0)
-            personTexts[17].text = "Friendly";
+            personTexts[19].text = "Friendly";
         else if(shownPerson.belong < 0)
-            personTexts[17].text = "Enemy";
+            personTexts[19].text = "Enemy";
         else
-            personTexts[17].text = "Neutrality";
-        if(shownPerson.belong == 0)
-            personTexts[19].text = "X";
-        else
-            personTexts[19].text = shownPerson.passion.ToString();
+            personTexts[19].text = "Neutrality";
         if(shownPerson.belong == 0)
             personTexts[21].text = "X";
         else
-            personTexts[21].text = shownPerson.isAgent ? "Agent" : "Informant";
+            personTexts[21].text = shownPerson.passion.ToString();
         personTexts[23].text = CityManager.cityList[shownPerson.location].name;
         personTexts[25].text = shownPerson.exposure.ToString();
         personTexts[27].text = shownPerson.rank.ToString();
@@ -182,7 +179,7 @@ public class GamePlayUIManager : MonoBehaviour
         personTexts[39].text = shownPerson.trait.ToString();//추후에 수정 필요
         personTexts[41].text = shownPerson.perk.ToString();//추후에 수정 필요
 
-        for(int i = 0, idx = 1;i < 20;i++)
+        for(int i = 0, idx = 3;i < 19;i++)
         {
             if(shownPerson.CheckReveal(i) == false)
             {
@@ -205,7 +202,7 @@ public class GamePlayUIManager : MonoBehaviour
             {
                 switch(i)
                 {
-                    case 0 : personTexts[18].color = Color.blue; personTexts[19].color = Color.blue; break;
+                    case 0 : personTexts[20].color = Color.blue; personTexts[21].color = Color.blue; break;
                     case 1 : personTexts[24].color = Color.blue; personTexts[25].color = Color.blue; break;
                     case 2 : personTexts[28].color = Color.blue; personTexts[29].color = Color.blue; break;
                     case 3 : personTexts[30].color = Color.blue; personTexts[31].color = Color.blue; break;

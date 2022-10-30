@@ -56,6 +56,11 @@ public class Deploy : MonoBehaviour
     private TextMeshProUGUI[] personTexts;
     private TextMeshProUGUI[] equipmentTexts;
 
+    private InformationScreen informationScreenInstance;
+    private int selectedInfoId;
+    private bool prePerson;
+    private Button previouslySelectedInfoButton;
+
     [SerializeField]
     private int actionCost = 50;
 
@@ -72,16 +77,13 @@ public class Deploy : MonoBehaviour
     private GameObject equipmentPrefab;
 
     [SerializeField]
-    private GameObject personInformation;
+    private GameObject informationScreen;
 
     [SerializeField]
     private GameObject oddInformation;
 
     [SerializeField]
     private TextMeshProUGUI costText;
-
-    [SerializeField]
-    private GameObject equipmentInformation;
 
     [SerializeField]
     private GameObject confirmationView;
@@ -99,8 +101,8 @@ public class Deploy : MonoBehaviour
         usableEquipment = new List<int>();
         usableEquipment.Add(0);
         oddTexts = oddInformation.GetComponentsInChildren<TextMeshProUGUI>();
-        personTexts = personInformation.GetComponentsInChildren<TextMeshProUGUI>();
-        equipmentTexts = equipmentInformation.GetComponentsInChildren<TextMeshProUGUI>();
+
+        informationScreenInstance = informationScreen.GetComponent<InformationScreen>();
     }
 
     // Update is called once per frame
@@ -135,9 +137,11 @@ public class Deploy : MonoBehaviour
         }
     }
 
-    public void ResetInfo()
+    public void ResetVariables()
     {
         selectedAgentId = -1;
+        selectedInfoId = -1;
+        prePerson = true;
         ResetOddScreen();
         equipmentBef = 0;
         equipmentSuccess = 0;
@@ -155,7 +159,7 @@ public class Deploy : MonoBehaviour
     public void ReflectCityInfo(City city1, City city2)
     {
         ResetScrollContentList();
-        ResetInfo();
+        ResetVariables();
 
         baseCity = city1;
         selectedCity = city2;
@@ -170,7 +174,7 @@ public class Deploy : MonoBehaviour
                 GameObject tmp = Instantiate(personPrefab, agentScrollContent); // 프리팹 생성
                 Button[] buttons = tmp.GetComponentsInChildren<Button>();
                 int tmpId = id;
-                buttons[0].onClick.AddListener(() => UpdatePersonInformationScreen(tmpId));
+                buttons[0].onClick.AddListener(() => ClickInformationButton(true, tmpId, buttons[0]));
                 buttons[0].GetComponentInChildren<TextMeshProUGUI>().text = PersonManager.personList[id].codename;
                 buttons[1].onClick.AddListener(() => ChooseAgent(tmpId, buttons[1])); // 프리팹에 버튼 함수 할당
             }
@@ -190,12 +194,50 @@ public class Deploy : MonoBehaviour
             GameObject tmp = Instantiate(equipmentPrefab, equipmentScrollContent); // 프리팹 생성
             Button[] buttons = tmp.GetComponentsInChildren<Button>();
             int tmpId = id;
-            buttons[0].onClick.AddListener(() => UpdateEquipmentInformationScreen(tmpId));
+            buttons[0].onClick.AddListener(() => ClickInformationButton(false, tmpId, buttons[0]));
             buttons[0].GetComponentInChildren<TextMeshProUGUI>().text = EquipmentManager.equipmentList[id].name;
             buttons[1].onClick.AddListener(() => ChooseEquipment(tmpId, buttons[1])); // 프리팹에 버튼 함수 할당
         }
         
         CalculateByCity();
+    }
+
+    void ClickInformationButton(bool person, int id, Button self)
+    {
+        if(selectedInfoId < 0)
+        {
+            selectedInfoId = id;
+            previouslySelectedInfoButton = self;
+            self.GetComponentInChildren<Image>().color = Color.green;
+            self.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+            prePerson = person;
+            if(person)
+            {
+                informationScreenInstance.UpdatePersonInformationScreen(id);
+            }
+            else
+            {
+                informationScreenInstance.UpdateEquipmentInformationScreen(id);
+            }
+        }
+        else if(prePerson != person || selectedInfoId != id)
+        {
+            previouslySelectedInfoButton.GetComponentInChildren<Image>().color = Color.white;
+            previouslySelectedInfoButton.GetComponentInChildren<TextMeshProUGUI>().color = Color.black;
+            selectedInfoId = id;
+            previouslySelectedInfoButton = self;
+            self.GetComponentInChildren<Image>().color = Color.green;
+            self.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+            prePerson = person;
+            if(person)
+            {
+                informationScreenInstance.UpdatePersonInformationScreen(id);
+            }
+            else
+            {
+                informationScreenInstance.UpdateEquipmentInformationScreen(id);
+            }
+        }
     }
 
     //요원 버튼이 눌릴 경우 호출되는 함수
@@ -258,22 +300,6 @@ public class Deploy : MonoBehaviour
         {
             UpdateOddScreen();
         }
-    }
-
-    public void UpdatePersonInformationScreen(int id)
-    {
-        HideEquipmentInformation();
-        ShowPersonInformation();
-        shownPerson = PersonManager.personList[id];
-        GamePlayUIManager.UpdatePersonInformationScreen(shownPerson, personTexts);
-    }
-
-    public void UpdateEquipmentInformationScreen(int id)
-    {
-        HidePersonInformation();
-        ShowEquipmentInformation();
-        shownEquipment = EquipmentManager.equipmentList[id];
-        GamePlayUIManager.UpdateEquipmentInformationScreen(shownEquipment, equipmentTexts);
     }
 
     public void CalculateByAgent()
@@ -353,31 +379,5 @@ public class Deploy : MonoBehaviour
     public void HideConfirmationView()
     {
         confirmationView.gameObject.SetActive(false);
-    }
-
-    public void ShowPersonInformation()
-    {
-        personInformation.gameObject.SetActive(true);
-    }
-
-    public void HidePersonInformation()
-    {
-        personInformation.gameObject.SetActive(false);
-    }
-
-    public void ShowEquipmentInformation()
-    {
-        equipmentInformation.gameObject.SetActive(true);
-    }
-
-    public void HideEquipmentInformation()
-    {
-        equipmentInformation.gameObject.SetActive(false);
-    }
-
-    public void HideInformationScreen()
-    {
-        personInformation.gameObject.SetActive(false);
-        equipmentInformation.gameObject.SetActive(false);
     }
 }

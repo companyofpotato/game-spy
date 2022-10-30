@@ -827,7 +827,7 @@ ScriptsOnlyBuild:
     className: VariablesAsset
   - hash:
       serializedVersion: 2
-      Hash: ee6cef8fd03fb63042be967a8c708a94
+      Hash: d38a98555a22e447e0b9f4d9b77e910c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Assassination
@@ -1037,7 +1037,7 @@ ScriptsOnlyBuild:
     className: DictionaryAsset
   - hash:
       serializedVersion: 2
-      Hash: 4e184f5d29f44f06ff48be1173bd1783
+      Hash: 32c3ae652252fa64064dd1fa29babe51
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Persuasion
@@ -1415,7 +1415,7 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 90f6b55bd82a2f58b632ddbc73851a65
+      Hash: b5499cbb499553971331e21628eb3f1f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Withdrawal
@@ -1673,7 +1673,7 @@ ScriptsOnlyBuild:
     className: TeleType
   - hash:
       serializedVersion: 2
-      Hash: 90f6b55bd82a2f58b632ddbc73851a65
+      Hash: b5499cbb499553971331e21628eb3f1f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Deploy

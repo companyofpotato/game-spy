@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GamePlay\Manager\PersonManager.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\UI\InformationScreen.cs" />
      <Compile Include="Assets\Scripts\GamePlay\Strategic\Analysis.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
@@ -72,6 +73,7 @@
      <Compile Include="Assets\Scripts\GamePlay\Tactical\InvestigatePerson.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
      <Compile Include="Assets\Scripts\GamePlay\Equipment.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\Strategic\Tmp.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
      <Compile Include="Assets\Scripts\GamePlay\Action.cs" />
@@ -82,7 +84,7 @@
      <Compile Include="Assets\Scripts\GamePlay\Strategic\Research.cs" />
      <Compile Include="Assets\Scripts\SaveFileManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
-     <Compile Include="Assets\Scripts\GamePlay\Strategic\Record.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\Strategic\Record\Record.cs" />
      <Compile Include="Assets\Scripts\GamePlay\Person.cs" />
      <Compile Include="Assets\Scripts\GamePlay\Tactical\Withdrawal.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -98,6 +100,13 @@
      <Compile Include="Assets\Scripts\GamePlay\Tactical\Deploy.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\Strategic\Record\AgentRecord.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\Strategic\Record\InformantRecord.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\Strategic\Record\PrisonerRecord.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\Strategic\Record\CityRecord.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\Strategic\Record\ReportRecord.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\Tactical\TacticalAction.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\UI\ButtonTest.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

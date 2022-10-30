@@ -31,6 +31,7 @@ using System.Collections.Generic;
 public class Person
 {
     public int id {get; private set;}
+    public bool isAgent {get; private set;}
     public int reveal {get; private set;} //비트맵 인덱스 위치의 값이 1이면 드러난 것이다.
     public int isReal {get; private set;} //passion, exposure, aim, stealth, handicraft, analysis, narration
     public string firstName {get; private set;}
@@ -48,7 +49,6 @@ public class Person
     public int passion {get; private set;}
     public int passionReal {get; private set;}
 
-    public bool isAgent {get; private set;}
     public int location {get; private set;} //거주 지역의 id
 
     public int exposure {get; private set;}
@@ -90,14 +90,15 @@ public class Person
     }
 */
 
-    public Person(int id, int reveal, int isReal, string firstName, string familyName, string codename, int age, bool gender, bool sexualHomo, bool sexualHetero, int appearance, int status, int belong, int passion, bool isAgent, int location, int exposure, int rank, int aim, int stealth, int handicraft, int analysis, int narration, int trait, int perk)
+    public Person(int id, bool isAgent, string codename, int reveal, int isReal, string firstName, string familyName, int age, bool gender, bool sexualHomo, bool sexualHetero, int appearance, int status, int belong, int passion, int location, int exposure, int rank, int aim, int stealth, int handicraft, int analysis, int narration, int trait, int perk)
     {
         this.id = id;
+        this.isAgent = isAgent;
+        this.codename = codename;
         this.reveal = reveal;
         this.isReal = isReal;
         this.firstName = firstName;
         this.familyName = familyName;
-        this.codename = codename;
         this.age = age;
         this.gender = gender;
         this.sexualHomo = sexualHomo;
@@ -110,7 +111,6 @@ public class Person
         this.passion = passion;
         this.passionReal = passion;
 
-        this.isAgent = isAgent;
         this.location = location;
 
         this.exposure = exposure;
