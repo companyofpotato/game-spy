@@ -12,7 +12,7 @@ public class City
     public List<int> personList {get; private set;} //값은 Person의 id이다.
 
     public List<Action> actionList {get; private set;}
-    public string reportText {get; private set;}
+    public List<string> reportList {get; private set;}
 
     public City(int id, string name, int type, int buildings, int traits, List<int> personList)
     {
@@ -24,7 +24,7 @@ public class City
         this.personList = personList;
 
         actionList = new List<Action>();
-        reportText = "";
+        reportList = new List<string>();
     }
 
     public void ChangeInfo(City changedCity)
@@ -74,7 +74,7 @@ public class City
 
     public void AddReport(string text)
     {
-        reportText += text + "\n";
+        reportList.Add(text);
     }
 
     public bool CheckBuilding(int num)

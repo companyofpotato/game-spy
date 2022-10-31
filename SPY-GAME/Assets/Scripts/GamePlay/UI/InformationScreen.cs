@@ -8,7 +8,6 @@ public class InformationScreen : MonoBehaviour
 {
     private TextMeshProUGUI[] personTexts;
     private TextMeshProUGUI[] equipmentTexts;
-    private TextMeshProUGUI reportText;
 
     [SerializeField]
     private GameObject personInformation;
@@ -19,15 +18,17 @@ public class InformationScreen : MonoBehaviour
     [SerializeField]
     private GameObject reportInformation;
 
-    //[SerializeField]
-    //private GameObject cityInformation;
+    [SerializeField]
+    private Transform reportContent;
+
+    [SerializeField]
+    private GameObject reportPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         personTexts = personInformation.GetComponentsInChildren<TextMeshProUGUI>();
         equipmentTexts = equipmentInformation.GetComponentsInChildren<TextMeshProUGUI>();
-        reportText = reportInformation.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -194,10 +195,30 @@ public class InformationScreen : MonoBehaviour
     {
         HideAllInformationScreen();
 
+        List<string> reportList = new List<string>();
         if(personDef)
-            reportText.text = PersonManager.GetReportText(id);
+            reportList = PersonManager.GetReportList(id);
         else
-            reportText.text = CityManager.GetReportText(id);
+            reportList = CityManager.GetReportList(id);
+
+        Transform[] childList = reportContent.GetComponentsInChildren<Transform>();
+        int childCount;
+
+        if(childList != null)
+        {
+            childCount = childList.Length;
+            for(int i = 4;i < childCount;i++)
+            {
+                Destroy(childList[i].gameObject);
+            }
+        }
+
+        foreach(string item in reportList)
+        {
+            GameObject tmp = Instantiate(reportPrefab, reportContent);
+            TextMeshProUGUI tmpText = tmp.GetComponentInChildren<TextMeshProUGUI>();
+            tmpText.text = item;
+        }
 
         ShowReportInformation();
     }

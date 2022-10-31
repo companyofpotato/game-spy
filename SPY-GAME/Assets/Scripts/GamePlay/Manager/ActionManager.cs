@@ -9,8 +9,8 @@ public class ActionManager : MonoBehaviour
 
     private static List<Action> actionList;
     private static List<List<Action>> actionListList;
-    private static string reportText;
-    private static List<string> reportTextList;
+    private static List<string> reportList;
+    private static List<List<string>> reportListList;
 
     private static int currentTurn;
 
@@ -18,7 +18,10 @@ public class ActionManager : MonoBehaviour
     private GameObject reportView;
 
     [SerializeField]
-    private TextMeshProUGUI reportTMP;
+    private Transform reportContent;
+
+    [SerializeField]
+    private GameObject reportPrefab;
 
     private static int escapeWound = 25;
     private static int escapeDeath = 5;
@@ -76,7 +79,7 @@ public class ActionManager : MonoBehaviour
     {
         actionList = new List<Action>();
         actionListList = new List<List<Action>>();
-        reportTextList = new List<string>();
+        reportListList = new List<List<string>>();
         currentTurn = 0;
     }
 
@@ -94,7 +97,7 @@ public class ActionManager : MonoBehaviour
     public static void ExecuteActions()
     {
         
-        reportText = "";
+        reportList = new List<string>();
         
         foreach(var action in actionList)
         {
@@ -166,7 +169,7 @@ public class ActionManager : MonoBehaviour
             CityManager.AddAction(action.where, action);
             CityManager.AddReport(action.where, action.MakeText(true, true));
 
-            reportText += action.MakeText(false, true) + "\n\n";
+            reportList.Add(action.MakeText(false, true));
         }
 
         actionListList.Add(actionList);
@@ -327,17 +330,16 @@ public class ActionManager : MonoBehaviour
 
     public void MakeReport()
     {
-        reportTMP.text = $"Report of Turn {currentTurn - 1}\n\n" + reportText;
-        reportTextList.Add(reportText);
-    }
+        TextMeshProUGUI tmpText = reportContent.GetComponentInChildren<TextMeshProUGUI>();
+        tmpText.text = $"Report of Turn {currentTurn - 1}.";
 
-    public void ShowReportView()
-    {
-        reportView.gameObject.SetActive(true);
-    }
+        foreach(string item in reportList)
+        {
+            GameObject tmp = Instantiate(reportPrefab, reportContent);
+            tmpText = tmp.GetComponentInChildren<TextMeshProUGUI>();
+            tmpText.text = item;
+        }
 
-    public void HideReportView()
-    {
-        reportView.gameObject.SetActive(false);
+        reportListList.Add(reportList);
     }
 }

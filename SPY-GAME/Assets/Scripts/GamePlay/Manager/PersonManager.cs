@@ -213,8 +213,8 @@ public class PersonManager : MonoBehaviour
         personList[id].AddDoubleAction(newAction);
     }
 
-    public static string GetReportText(int id)
+    public static List<string> GetReportList(int id)
     {
-        return personList[id].reportText;
+        return personList[id].reportList;
     }
 }

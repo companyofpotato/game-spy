@@ -81,7 +81,7 @@ public class Person
 
     public List<Action> actionList {get; private set;}
     public List<Action> doubleList {get; private set;}
-    public string reportText {get; private set;}
+    public List<string> reportList {get; private set;}
 
 /*
     public Person()
@@ -140,7 +140,7 @@ public class Person
 
         actionList = new List<Action>();
         doubleList = new List<Action>();
-        reportText = "";
+        reportList = new List<string>();
     }
 
     public void ChangeStatus(int after)
@@ -200,7 +200,7 @@ public class Person
 
     public void AddReport(string text)
     {
-        reportText += text + "\n";
+        reportList.Add(text);
     }
 
     public void AddDoubleAction(Action newAction)

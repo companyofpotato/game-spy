@@ -59,7 +59,6 @@ public class CityRecord : MonoBehaviour
         
     }
 
-    
     public void ResetVariables()
     {
         lastSort = 0;

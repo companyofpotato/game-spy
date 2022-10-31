@@ -135,8 +135,8 @@ public class CityManager : MonoBehaviour
         cityList[id].AddReport(reportText);
     }
 
-    public static string GetReportText(int id)
+    public static List<string> GetReportList(int id)
     {
-        return cityList[id].reportText;
+        return cityList[id].reportList;
     }
 }

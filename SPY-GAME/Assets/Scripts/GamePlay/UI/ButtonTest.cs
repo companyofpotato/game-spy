@@ -8,7 +8,7 @@ public class ButtonTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = gameObject.GetComponentInParent<TacticalAction>();
+        //instance = gameObject.GetComponentInParent<TacticalAction>();
     }
 
     // Update is called once per frame
@@ -19,6 +19,6 @@ public class ButtonTest : MonoBehaviour
 
     public void Clicked()
     {
-        Debug.Log(instance.type);
+        //Debug.Log(instance.type);
     }
 }
