@@ -59,7 +59,7 @@ public class Record : MonoBehaviour
         informantInstance.ResetVariables();
         prisonerInstance.ResetVariables();
         cityInstance.ResetVariables();
-        //reportInstance.ResetVariables();
+        reportInstance.ResetVariables();
     }
 
     public void ResetScrollContentList()
@@ -68,7 +68,6 @@ public class Record : MonoBehaviour
         informantInstance.ResetScrollContentList();
         prisonerInstance.ResetScrollContentList();
         cityInstance.ResetScrollContentList();
-        //reportInstance.ResetScrollContentList();
     }
 
     public void MakeStructList()
@@ -77,7 +76,6 @@ public class Record : MonoBehaviour
         informantInstance.MakeStructList();
         prisonerInstance.MakeStructList();
         cityInstance.MakeStructList();
-        //reportInstance.MakeStructList();
     }
 
     public void ClickButton(int n)

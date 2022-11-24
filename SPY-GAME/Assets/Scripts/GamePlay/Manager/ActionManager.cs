@@ -10,9 +10,9 @@ public class ActionManager : MonoBehaviour
     private static List<Action> actionList;
     private static List<List<Action>> actionListList;
     private static List<string> reportList;
-    private static List<List<string>> reportListList;
+    public static List<List<string>> reportListList {get; private set;}
 
-    private static int currentTurn;
+    public static int currentTurn {get; private set;}
 
     [SerializeField]
     private GameObject reportView;
@@ -80,7 +80,8 @@ public class ActionManager : MonoBehaviour
         actionList = new List<Action>();
         actionListList = new List<List<Action>>();
         reportListList = new List<List<string>>();
-        currentTurn = 0;
+        ExecuteActions();
+        currentTurn = 1;
     }
 
     // Update is called once per frame
@@ -98,6 +99,12 @@ public class ActionManager : MonoBehaviour
     {
         
         reportList = new List<string>();
+
+        if(actionList.Count == 0)
+        {
+            reportList.Add("There is no Action Report for this turn.");
+            reportListList.Add(reportList);
+        }
         
         foreach(var action in actionList)
         {
@@ -162,7 +169,6 @@ public class ActionManager : MonoBehaviour
             PersonManager.MakeAvailable(action.who);
 
             action.Executed(currentTurn, bef, success, aft, escape);
-            Debug.Log($"{bef}, {success}, {aft}, {escape}");
 
             PersonManager.AddAction(action.who, action);
             PersonManager.AddReport(action.who, action.MakeText(true, false));
@@ -330,6 +336,14 @@ public class ActionManager : MonoBehaviour
 
     public void MakeReport()
     {
+        Transform[] childList = reportContent.GetComponentsInChildren<Transform>();
+        
+        int childCount = childList.Length;
+        for(int i = 3;i < childCount;i++)
+        {
+            Destroy(childList[i].gameObject);
+        }
+        
         TextMeshProUGUI tmpText = reportContent.GetComponentInChildren<TextMeshProUGUI>();
         tmpText.text = $"Report of Turn {currentTurn - 1}.";
 

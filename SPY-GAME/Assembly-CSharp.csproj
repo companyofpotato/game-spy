@@ -50,7 +50,6 @@
      <Compile Include="Assets\Scripts\GamePlay\Strategic\Record\AgentRecord.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-     <Compile Include="Assets\Scripts\GamePlay\UI\ButtonTest.cs" />
      <Compile Include="Assets\Scripts\GamePlay\Tactical\Assassination.cs" />
      <Compile Include="Assets\Scripts\GamePlay\Manager\StrategicActionManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
@@ -107,6 +106,10 @@
      <Compile Include="Assets\Scripts\GamePlay\Tactical\Deploy.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\UI\AgentButton.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\UI\EquipmentButton.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\UI\TargetButton.cs" />
+     <Compile Include="Assets\Scripts\GamePlay\UI\MethodButton.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

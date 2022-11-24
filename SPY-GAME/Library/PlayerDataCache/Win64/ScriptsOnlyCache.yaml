@@ -739,7 +739,7 @@ ScriptsOnlyBuild:
     className: PersonManager
   - hash:
       serializedVersion: 2
-      Hash: c68360302559a5f3f066e7fc04d537ce
+      Hash: 6d62963536a749c2b29ca3600f1078a6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: InformationScreen

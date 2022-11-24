@@ -110,7 +110,7 @@ public class TacticalActionManager : MonoBehaviour
     public void ReflectCityInfo()
     {
         deployInstance.ReflectCityInfo(baseCity, selectedCity);
-        withdrawalInstance.ReflectCityInfo(selectedCity);
+        withdrawalInstance.ReflectCityInfo(baseCity, selectedCity);
         assassinationInstance.ReflectCityInfo(baseCity, selectedCity);
         persuasionInstance.ReflectCityInfo(baseCity, selectedCity);
     }
