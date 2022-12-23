@@ -23,6 +23,13 @@ public class Withdrawal : TacticalAction
     {
         
     }
+
+    public override void ResetVariables()
+    {
+        base.ResetVariables();
+        selectedMethodId = 1;
+        selectedTargetId = 1;
+    }
     
     public override void ReflectCityInfo(City nullCity, City city)
     {

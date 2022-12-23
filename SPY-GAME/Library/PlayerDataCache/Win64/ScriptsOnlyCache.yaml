@@ -2,20 +2,21 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - ActionManager
+    - AgentButton
     - AgentRecord
     - Assassination
-    - ButtonTest
     - CityManager
     - CityRecord
     - Deploy
+    - EquipmentButton
     - EquipmentManager
     - GameManager
     - GamePlayUIManager
     - InformantRecord
     - InformationScreen
-    - InvestigatePerson
     - InvestigateRegion
     - MainMenuManager
+    - MethodButton
     - PersonManager
     - Persuasion
     - PrisonerRecord
@@ -24,13 +25,13 @@ ScriptsOnlyBuild:
     - ResourceManager
     - SaveFileManager
     - TacticalActionManager
+    - TargetButton
     - Test
     - Withdrawal
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
@@ -124,8 +125,29 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle/ToggleEvent
   methodsToPreserve:
   - assembly: Assembly-CSharp
-    fullTypeName: ButtonTest
-    methodName: Clicked
+    fullTypeName: AgentButton
+    methodName: AgentSelected
+  - assembly: Assembly-CSharp
+    fullTypeName: AgentButton
+    methodName: InfoClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: EquipmentButton
+    methodName: EquipmentSelected
+  - assembly: Assembly-CSharp
+    fullTypeName: EquipmentButton
+    methodName: InfoClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: TargetButton
+    methodName: TargetSelected
+  - assembly: Assembly-CSharp
+    fullTypeName: TargetButton
+    methodName: InfoClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: MethodButton
+    methodName: MethodSelected
+  - assembly: Assembly-CSharp
+    fullTypeName: MethodButton
+    methodName: InfoClicked
   - assembly: Assembly-CSharp
     fullTypeName: InformantRecord
     methodName: ChangeSortColorToggle
@@ -163,11 +185,11 @@ ScriptsOnlyBuild:
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
   - assembly: Assembly-CSharp
-    fullTypeName: Withdrawal
+    fullTypeName: TacticalAction
     methodName: Execute
-  - assembly: Assembly-CSharp
-    fullTypeName: GamePlayUIManager
-    methodName: HideUnselectedTargetView
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
   - assembly: Assembly-CSharp
     fullTypeName: GamePlayUIManager
     methodName: ShowStrategicView
@@ -189,9 +211,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: PrisonerRecord
     methodName: SortDataToggle
-  - assembly: Assembly-CSharp
-    fullTypeName: GamePlayUIManager
-    methodName: HideUnselectedCityView
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
   - assembly: Assembly-CSharp
     fullTypeName: CityRecord
     methodName: ChangeSortColorToggle
@@ -235,8 +257,11 @@ ScriptsOnlyBuild:
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
   - assembly: Assembly-CSharp
-    fullTypeName: GamePlayUIManager
-    methodName: HideUnselectedMethodView
+    fullTypeName: ReportRecord
+    methodName: ValueChanged
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
   - assembly: Assembly-CSharp
     fullTypeName: PrisonerRecord
     methodName: ChangeSortColorToggle
@@ -298,7 +323,7 @@ ScriptsOnlyBuild:
     fullTypeName: TacticalActionManager
     methodName: SelectCity
   - assembly: Assembly-CSharp
-    fullTypeName: Deploy
+    fullTypeName: TacticalAction
     methodName: Execute
   - assembly: Assembly-CSharp
     fullTypeName: AgentRecord
@@ -408,9 +433,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: ResourceManager
     methodName: ResetResourceUI
-  - assembly: Assembly-CSharp
-    fullTypeName: GamePlayUIManager
-    methodName: HideUnselectedAgentView
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
   - assembly: Assembly-CSharp
     fullTypeName: Persuasion
     methodName: MinusMoney
@@ -433,6 +458,9 @@ ScriptsOnlyBuild:
     fullTypeName: AgentRecord
     methodName: SortDataToggle
   - assembly: Assembly-CSharp
+    fullTypeName: ReportRecord
+    methodName: PlusTurn
+  - assembly: Assembly-CSharp
     fullTypeName: MainMenuManager
     methodName: ShowSaveGameView
   - assembly: Assembly-CSharp
@@ -441,11 +469,11 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: MainMenuManager
     methodName: ExitGame
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
   - assembly: Assembly-CSharp
-    fullTypeName: GamePlayUIManager
-    methodName: HideLowMoneyView
-  - assembly: Assembly-CSharp
-    fullTypeName: Assassination
+    fullTypeName: TacticalAction
     methodName: Execute
   - assembly: Assembly-CSharp
     fullTypeName: TacticalActionManager
@@ -514,8 +542,8 @@ ScriptsOnlyBuild:
     fullTypeName: PrisonerRecord
     methodName: SortDataToggle
   - assembly: Assembly-CSharp
-    fullTypeName: Persuasion
-    methodName: CalculateByMoney
+    fullTypeName: TacticalAction
+    methodName: ChangeCostText
   - assembly: Assembly-CSharp
     fullTypeName: AgentRecord
     methodName: ChangeSortColorToggle
@@ -553,7 +581,10 @@ ScriptsOnlyBuild:
     fullTypeName: PrisonerRecord
     methodName: SortDataToggle
   - assembly: Assembly-CSharp
-    fullTypeName: Persuasion
+    fullTypeName: ReportRecord
+    methodName: MinusTurn
+  - assembly: Assembly-CSharp
+    fullTypeName: TacticalAction
     methodName: Execute
   - assembly: Assembly-CSharp
     fullTypeName: AgentRecord
@@ -619,71 +650,73 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3496}
     - Class: 114
-      Script: {instanceID: 3700}
+      Script: {instanceID: 3718}
     - Class: 114
-      Script: {instanceID: 3720}
+      Script: {instanceID: 3800}
     - Class: 114
-      Script: {instanceID: 3802}
+      Script: {instanceID: 4208}
     - Class: 114
-      Script: {instanceID: 4210}
+      Script: {instanceID: 4488}
     - Class: 114
-      Script: {instanceID: 4490}
+      Script: {instanceID: 4656}
     - Class: 114
-      Script: {instanceID: 4658}
+      Script: {instanceID: 4770}
     - Class: 114
-      Script: {instanceID: 4772}
+      Script: {instanceID: 4792}
     - Class: 114
-      Script: {instanceID: 4794}
+      Script: {instanceID: 4840}
     - Class: 114
-      Script: {instanceID: 4842}
+      Script: {instanceID: 4918}
     - Class: 114
-      Script: {instanceID: 4920}
+      Script: {instanceID: 4932}
     - Class: 114
-      Script: {instanceID: 4934}
+      Script: {instanceID: 5132}
     - Class: 114
-      Script: {instanceID: 5134}
+      Script: {instanceID: 5592}
     - Class: 114
-      Script: {instanceID: 5594}
+      Script: {instanceID: 5622}
     - Class: 114
-      Script: {instanceID: 5624}
-    - Class: 114
-      Script: {instanceID: 5804}
+      Script: {instanceID: 5636}
     - Class: 114
       Script: {instanceID: 5820}
     - Class: 114
       Script: {instanceID: 6070}
     - Class: 114
-      Script: {instanceID: 6338}
+      Script: {instanceID: 6396}
     - Class: 114
-      Script: {instanceID: 6682}
+      Script: {instanceID: 6636}
     - Class: 114
-      Script: {instanceID: 6816}
+      Script: {instanceID: 6686}
     - Class: 114
       Script: {instanceID: 6820}
     - Class: 114
-      Script: {instanceID: 6834}
+      Script: {instanceID: 6824}
     - Class: 114
-      Script: {instanceID: 7022}
+      Script: {instanceID: 6838}
     - Class: 114
-      Script: {instanceID: 7028}
+      Script: {instanceID: 7026}
     - Class: 114
-      Script: {instanceID: 7092}
+      Script: {instanceID: 7032}
     - Class: 114
-      Script: {instanceID: 7206}
+      Script: {instanceID: 7096}
     - Class: 114
-      Script: {instanceID: 7452}
+      Script: {instanceID: 7210}
     - Class: 114
-      Script: {instanceID: 7464}
+      Script: {instanceID: 7456}
     - Class: 114
-      Script: {instanceID: 7522}
+      Script: {instanceID: 7468}
     - Class: 114
-      Script: {instanceID: 7770}
+      Script: {instanceID: 7526}
     - Class: 114
-      Script: {instanceID: 8000}
+      Script: {instanceID: 7774}
     - Class: 114
-      Script: {instanceID: 8268}
+      Script: {instanceID: 8004}
     - Class: 114
-      Script: {instanceID: 9386}
+      Script: {instanceID: 8272}
+    - Class: 114
+      Script: {instanceID: 8628}
+    - Class: 114
+      Script: {instanceID: 9392}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1081,12 +1114,6 @@ ScriptsOnlyBuild:
     className: UnityOnScrollMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ButtonTest
-  - hash:
-      serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -1099,7 +1126,7 @@ ScriptsOnlyBuild:
     className: VariablesAsset
   - hash:
       serializedVersion: 2
-      Hash: 4d14aa7c4b1cdbbbb59d3c5effeffb27
+      Hash: 2079cfba4a71712acdc18b3edb2952f6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Assassination
@@ -1309,7 +1336,7 @@ ScriptsOnlyBuild:
     className: DictionaryAsset
   - hash:
       serializedVersion: 2
-      Hash: 66d4ab1999d84bc7d229fde5ff98276a
+      Hash: 2079cfba4a71712acdc18b3edb2952f6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Persuasion
@@ -1421,6 +1448,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 2ecdbe75f54c8965e9d317f6c9a2e0e3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TargetButton
   - hash:
       serializedVersion: 2
       Hash: dd7520b7d4e690e8c593273e7b9fbe80
@@ -1549,6 +1582,12 @@ ScriptsOnlyBuild:
     className: SpriteSkinUpdateHelper
   - hash:
       serializedVersion: 2
+      Hash: 2ecdbe75f54c8965e9d317f6c9a2e0e3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AgentButton
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -1565,6 +1604,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.State.dll
     namespaceName: Unity.VisualScripting
     className: StateGraphAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 2ecdbe75f54c8965e9d317f6c9a2e0e3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MethodButton
   - hash:
       serializedVersion: 2
       Hash: be5f87a799073227c195e1582f6670bc
@@ -1639,7 +1684,7 @@ ScriptsOnlyBuild:
     className: SaveFileManager
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 43389e194fc5eabb0171b67d8fb81970
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ReportRecord
@@ -1711,7 +1756,7 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 3f9889bcb67a21a33268d94e00b032b0
+      Hash: 2079cfba4a71712acdc18b3edb2952f6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Withdrawal
@@ -1873,6 +1918,12 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
+      Hash: 2ecdbe75f54c8965e9d317f6c9a2e0e3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EquipmentButton
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -1969,7 +2020,7 @@ ScriptsOnlyBuild:
     className: TeleType
   - hash:
       serializedVersion: 2
-      Hash: 3f9889bcb67a21a33268d94e00b032b0
+      Hash: 2079cfba4a71712acdc18b3edb2952f6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Deploy

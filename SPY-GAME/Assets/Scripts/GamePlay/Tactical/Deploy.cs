@@ -23,6 +23,13 @@ public class Deploy : TacticalAction
         
     }
 
+    public override void ResetVariables()
+    {
+        base.ResetVariables();
+        selectedMethodId = 1;
+        selectedTargetId = 1;
+    }
+
     public override void ReflectCityInfo(City city1, City city2)
     {
         ResetScrollContentList();
